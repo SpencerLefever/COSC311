@@ -11,8 +11,8 @@ bejaia_data = pd.read_csv('Bejaia_Region.csv')
 sidi_data = pd.read_csv('Sidi-Bel_Abbes_Region.csv')
 
 #Task 1
-print('Bejaia Region Info\n',bejaia_data.info())
-print('\nSidi-Bel Abbes Region Info\n', sidi_data.info())
+print(bejaia_data.info())
+print(sidi_data.info())
 print('\nBejaia Region Data\n', bejaia_data.describe())
 print('\nSidi-Bel Abbes Region Data\n', sidi_data.describe())
 print('\nBejaia Unique Windspeed\n', bejaia_data['Ws'].unique())
@@ -25,6 +25,17 @@ plt.plot(bejaia_data['Temperature'], marker='o', linestyle='solid')
 plt.title('Temperature Over Time in Bejaia')
 plt.ylabel('Temperature')
 plt.xlabel('Day')
+N=50
+plt.gca().margins(x=0)
+plt.gcf().canvas.draw()
+tl = plt.gca().get_xticklabels()
+maxsize = max([t.get_window_extent().width for t in tl])
+m = 0.2 # inch margin
+s = maxsize/plt.gcf().dpi*N+2*m
+margin = m/plt.gcf().get_size_inches()[0]
+
+plt.gcf().subplots_adjust(left=margin, right=1.-margin)
+plt.gcf().set_size_inches(s, plt.gcf().get_size_inches()[1])
 plt.show()
 
 #Task 3
